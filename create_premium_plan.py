@@ -195,7 +195,7 @@ class RoadmapCard(Flowable):
 
         # フェーズラベル
         c.setFont("IPAGothic", 8)
-        c.setFillColor(GOLD_LIGHT)
+        c.setFillColor(WHITE)
         c.drawCentredString(cx, cy - 18, self.phase_label)
 
         # 期間テキスト
