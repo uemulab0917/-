@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UEMULAB ミット打ち体験 無料チラシ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --g1: #7A5C10;
+      --g2: #C8A951;
+      --g3: #F5D98B;
+      --gold-grad: linear-gradient(120deg, #7A5C10 0%, #C8A951 28%, #F5D98B 50%, #C8A951 72%, #7A5C10 100%);
+      --cream: #FDFCF4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page {
+      size: 148mm 210mm;
+      margin: 0;
+    }
+
+    body {
+      background: #D8D8D8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 20px 40px;
+      font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── 画面用コントロール ── */
+    .controls {
+      width: 148mm;
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .print-btn {
+      padding: 10px 24px;
+      background: var(--gold-grad);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      box-shadow: 0 4px 14px rgba(160,120,20,0.4);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+      white-space: nowrap;
+    }
+
+    .note {
+      flex: 1;
+      font-size: 11px;
+      color: #555;
+      font-family: inherit;
+      background: #fff;
+      padding: 8px 14px;
+      border-radius: 4px;
+      border-left: 3px solid var(--g2);
+      line-height: 1.7;
+    }
+
+    @media print {
+      body { background: none; padding: 0; display: block; }
+      .controls { display: none; }
+      .flyer { box-shadow: none; }
+    }
+
+    /* ════════════════════════════════
+       FLYER 本体 (A5 = 148mm × 210mm)
+       ════════════════════════════════ */
+    .flyer {
+      width: 148mm;
+      height: 210mm;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 44px rgba(0,0,0,0.28);
+    }
+
+    /* 二重金枠 */
+    .frame-outer {
+      position: absolute;
+      inset: 2.5mm;
+      border: 0.5mm solid var(--g2);
+      pointer-events: none;
+      z-index: 60;
+    }
+    .frame-inner {
+      position: absolute;
+      inset: 4mm;
+      border: 0.15mm solid rgba(200,169,81,0.45);
+      pointer-events: none;
+      z-index: 60;
+    }
+
+    /* ── TOP BAND ── */
+    .top-band {
+      height: 14mm;
+      background: var(--gold-grad);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8mm;
+    }
+
+    .logo {
+      color: #fff;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 8mm;
+      font-weight: 700;
+      letter-spacing: 0.38em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.22), 0 0 20px rgba(255,255,255,0.12);
+    }
+
+    .logo-sub {
+      color: rgba(255,255,255,0.86);
+      font-size: 2.2mm;
+      letter-spacing: 0.22em;
+      font-weight: 300;
+    }
+
+    /* ── CATCH COPY ── */
+    .catch {
+      padding: 5mm 8mm 3.5mm;
+      text-align: center;
+      background: linear-gradient(180deg, #FFFEF5 0%, #fff 100%);
+    }
+
+    .catch-main {
+      font-size: 7.8mm;
+      font-weight: 900;
+      color: #1a1a1a;
+      line-height: 1.22;
+      letter-spacing: 0.02em;
+    }
+
+    .catch-main .gold-txt {
+      color: var(--g1);
+    }
+
+    .catch-sub {
+      margin-top: 2.2mm;
+      font-size: 3mm;
+      color: #555;
+      letter-spacing: 0.07em;
+      font-weight: 400;
+    }
+
+    /* 細い金ライン */
+    .thin-line {
+      height: 0.4mm;
+      background: var(--gold-grad);
+      margin: 0 7.5mm;
+    }
+
+    /* ── OFFER BOX ── */
+    .offer {
+      margin: 3mm 7mm 0;
+      padding: 3.5mm 5mm;
+      border: 0.5mm solid var(--g2);
+      border-radius: 1.2mm;
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .offer-title {
+      font-size: 4mm;
+      font-weight: 700;
+      color: var(--g1);
+      letter-spacing: 0.14em;
+      border-bottom: 0.3mm solid rgba(200,169,81,0.5);
+      padding-bottom: 1.5mm;
+      margin-bottom: 2.5mm;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4mm;
+    }
+
+    .price-before-wrap {
+      text-align: center;
+    }
+
+    .price-label-sm {
+      font-size: 2.4mm;
+      color: #999;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5mm;
+    }
+
+    .price-before {
+      font-size: 6mm;
+      font-weight: 700;
+      color: #BBBBBB;
+      text-decoration: line-through;
+      text-decoration-color: #CC2200;
+      text-decoration-thickness: 0.6mm;
+      letter-spacing: 0.02em;
+    }
+
+    .arrow {
+      font-size: 7mm;
+      font-weight: 900;
+      color: var(--g2);
+      line-height: 1;
+    }
+
+    .price-free-wrap {
+      text-align: center;
+      line-height: 1;
+    }
+
+    .price-free {
+      font-size: 18mm;
+      font-weight: 900;
+      color: var(--g1);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-shadow: 0 2px 10px rgba(122,92,16,0.18);
+    }
+
+    .price-free-en {
+      font-size: 3.8mm;
+      font-weight: 700;
+      color: var(--g2);
+      letter-spacing: 0.18em;
+      display: block;
+      margin-top: -0.5mm;
+    }
+
+    .offer-meta {
+      margin-top: 2mm;
+      font-size: 2.8mm;
+      color: #666;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── GOLD BANNER ── */
+    .gold-banner {
+      margin: 3.5mm 0 0;
+      padding: 2.8mm 0;
+      background: var(--gold-grad);
+      text-align: center;
+    }
+
+    .gold-banner-text {
+      color: #fff;
+      font-size: 4.8mm;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.18);
+    }
+
+    /* ── TICKET BOX ── */
+    .ticket {
+      margin: 3mm 7mm 0;
+      padding: 3mm 5mm;
+      border: 0.5mm dashed var(--g2);
+      border-radius: 1.5mm;
+      background: linear-gradient(135deg, #FEFDF5 0%, #FFFEF9 100%);
+      text-align: center;
+      position: relative;
+    }
+
+    /* ノッチ（チケット風の切り込み） */
+    .ticket::before,
+    .ticket::after {
+      content: '';
+      position: absolute;
+      width: 3.5mm;
+      height: 3.5mm;
+      background: #D8D8D8;
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .ticket::before { left: -1.8mm; }
+    .ticket::after  { right: -1.8mm; }
+
+    .ticket-heading {
+      font-size: 3.2mm;
+      font-weight: 700;
+      color: var(--g1);
+      letter-spacing: 0.08em;
+      margin-bottom: 2mm;
+    }
+
+    .ticket-body {
+      font-size: 3mm;
+      color: #333;
+      line-height: 1.75;
+    }
+
+    .ticket-body strong {
+      color: var(--g1);
+      font-size: 3.8mm;
+      font-weight: 900;
+    }
+
+    .ticket-tags {
+      display: flex;
+      justify-content: center;
+      gap: 2mm;
+      margin-top: 2.5mm;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 2.4mm;
+      padding: 0.8mm 2.8mm;
+      border: 0.3mm solid var(--g2);
+      color: var(--g1);
+      border-radius: 0.8mm;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: #fff;
+    }
+
+    /* ── QR + INFO SECTION ── */
+    .bottom-sec {
+      margin: 3mm 7mm 0;
+      display: flex;
+      gap: 3.5mm;
+      align-items: flex-start;
+    }
+
+    .qr-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5mm;
+    }
+
+    .qr-item {
+      text-align: center;
+    }
+
+    .qr-img {
+      width: 17mm;
+      height: 17mm;
+      object-fit: contain;
+      display: block;
+      border: 0.2mm solid #eee;
+    }
+
+    .qr-fallback {
+      width: 17mm;
+      height: 17mm;
+      border: 0.3mm dashed #ccc;
+      background: #f5f5f5;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8mm;
+      color: #aaa;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .qr-lbl {
+      font-size: 2mm;
+      color: #555;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-top: 0.8mm;
+      text-align: center;
+    }
+
+    /* ── CONTACT INFO ── */
+    .info {
+      flex: 1;
+      border-left: 0.8mm solid var(--g2);
+      padding-left: 3mm;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5mm;
+      margin-bottom: 2.2mm;
+      line-height: 1.55;
+    }
+    .info-row:last-child { margin-bottom: 0; }
+
+    .info-icon {
+      font-size: 3mm;
+      flex-shrink: 0;
+      margin-top: 0.3mm;
+    }
+
+    .info-txt {
+      font-size: 2.4mm;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .info-txt b {
+      font-size: 2.7mm;
+      color: #1a1a1a;
+      font-weight: 700;
+    }
+
+    /* ── BOTTOM GOLD BAND ── */
+    .bottom-band {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 8.5mm;
+      background: var(--gold-grad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8mm;
+    }
+
+    .expire {
+      color: #fff;
+      font-size: 2.7mm;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .expire .diamond {
+      display: inline-block;
+      width: 1.2mm;
+      height: 1.2mm;
+      background: rgba(255,255,255,0.8);
+      transform: rotate(45deg);
+      margin: 0 1.5mm;
+      vertical-align: middle;
+    }
+
+    .website {
+      color: rgba(255,255,255,0.90);
+      font-size: 2.2mm;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <button class="print-btn" onclick="window.print()">🖨️ 印刷する（A5）</button>
+    <div class="note">
+      印刷設定：用紙サイズ <strong>A5</strong>、余白 <strong>なし(0mm)</strong>、背景グラフィックON<br>
+      QR画像は <code>flyer-images/</code> フォルダに保存してください（↓ファイル名参照）
+    </div>
+  </div>
+
+  <div class="flyer">
+
+    <!-- 金枠 -->
+    <div class="frame-outer"></div>
+    <div class="frame-inner"></div>
+
+    <!-- TOP BAND -->
+    <div class="top-band">
+      <div class="logo">UEMULAB</div>
+      <div class="logo-sub">Personal Gym &nbsp;·&nbsp; パーソナルジム</div>
+    </div>
+
+    <!-- CATCH COPY -->
+    <div class="catch">
+      <p class="catch-main">
+        モヤモヤ・イライラを<br>
+        <span class="gold-txt">全部ぶっ飛ばせ！</span>
+      </p>
+      <p class="catch-sub">思いっきりパンチして、ストレスをまるごとリセット。</p>
+    </div>
+
+    <div class="thin-line"></div>
+
+    <!-- OFFER BOX -->
+    <div class="offer">
+      <p class="offer-title">◆&ensp;ミット打ち体験&ensp;◆</p>
+      <div class="price-row">
+        <div class="price-before-wrap">
+          <p class="price-label-sm">通常価格</p>
+          <p class="price-before">¥3,500</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="price-free-wrap">
+          <p class="price-free">無料</p>
+          <span class="price-free-en">FREE · ¥0</span>
+        </div>
+      </div>
+      <p class="offer-meta">体験時間 30分 &emsp;／&emsp; 要予約</p>
+    </div>
+
+    <!-- GOLD BANNER -->
+    <div class="gold-banner">
+      <span class="gold-banner-text">★&emsp;近隣エリア限定&emsp;先着 5 名様&emsp;★</span>
+    </div>
+
+    <!-- TICKET BOX -->
+    <div class="ticket">
+      <p class="ticket-heading">― ご利用条件 ―</p>
+      <p class="ticket-body">
+        このチラシをお持ちの方に限り<br>
+        ミット打ち体験（通常30分&nbsp;¥3,500）を<br>
+        <strong>完全無料</strong>でご体験いただけます
+      </p>
+      <div class="ticket-tags">
+        <span class="tag">男女どちらでもOK</span>
+        <span class="tag">年齢不問</span>
+        <span class="tag">チラシ持参必須</span>
+      </div>
+    </div>
+
+    <!-- QR + INFO -->
+    <div class="bottom-sec">
+
+      <!-- QR 3点縦並び -->
+      <div class="qr-group">
+
+        <div class="qr-item">
+          <img src="flyer-images/qr-airreserve.png" class="qr-img" alt="AirReserve予約"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="qr-fallback">AIR<br>RESERVE</div>
+          <p class="qr-lbl">📅&nbsp;AirReserve<br>ネット予約</p>
+        </div>
+
+        <div class="qr-item">
+          <img src="flyer-images/qr-line.png" class="qr-img" alt="LINE予約"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="qr-fallback">LINE</div>
+          <p class="qr-lbl">💬&nbsp;LINE<br>予約OK</p>
+        </div>
+
+        <div class="qr-item">
+          <img src="flyer-images/qr-instagram.png" class="qr-img" alt="Instagram"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="qr-fallback">Instagram</div>
+          <p class="qr-lbl">📸&nbsp;Instagram</p>
+        </div>
+
+      </div>
+
+      <!-- 連絡先情報 -->
+      <div class="info">
+        <div class="info-row">
+          <span class="info-icon">📍</span>
+          <div class="info-txt">
+            <b>〒650-0011</b><br>
+            神戸市中央区下山手通<br>2丁目17-2&nbsp;モモビル403
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">📞</span>
+          <div class="info-txt"><b>070-9117-0396</b></div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🕐</span>
+          <div class="info-txt">
+            <b>8:00〜21:00</b><br>
+            最終受付&nbsp;20:00&nbsp;／&nbsp;不定休
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🌐</span>
+          <div class="info-txt">uemulab-gym.com</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM BAND -->
+    <div class="bottom-band">
+      <span class="expire">
+        <span class="diamond"></span>有効期限：2026年 6月30日まで<span class="diamond"></span>
+      </span>
+      <span class="website">uemulab-gym.com</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
