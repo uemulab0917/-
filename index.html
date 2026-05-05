@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOXING STUDIO [NAME] | パーソナルボクシング専門ジム</title>
+  <title>BOXING STUDIO [NAME] | 神戸三宮 女性専用ボクシングジム</title>
   <style>
-    /* ===== RESET & BASE ===== */
+    /* ===== BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -13,1490 +13,841 @@
       color: #1a1a1a;
       background: #fff;
       line-height: 1.7;
-      overflow-x: hidden;
     }
-    img { max-width: 100%; height: auto; display: block; }
+    img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
 
-    /* ===== COLOR TOKENS ===== */
+    /* ===== VARIABLES ===== */
     :root {
-      --black: #0d0d0d;
-      --white: #fff;
       --gold: #c9a84c;
       --gold-light: #e8c96a;
-      --gold-dark: #9a7a2e;
+      --black: #0d0d0d;
       --cream: #faf7f2;
       --warm: #f5ece0;
-      --gray-light: #f0eeeb;
-      --gray: #888;
+      --pink: #f9e8e8;
       --text: #1a1a1a;
-      --text-sub: #555;
+      --sub: #666;
     }
 
-    /* ===== UTILITY ===== */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    .section { padding: 80px 0; }
-    .section-title {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      line-height: 1.3;
-    }
-    .section-title span { color: var(--gold); }
-    .section-sub {
-      font-size: clamp(0.85rem, 2vw, 0.95rem);
-      letter-spacing: 0.2em;
+    /* ===== COMMON ===== */
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    .sec { padding: 72px 0; }
+    .sec-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
-    .divider {
-      width: 50px;
-      height: 3px;
+    .sec-title {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+    }
+    .sec-title em { color: var(--gold); font-style: normal; }
+    .line {
+      width: 44px; height: 3px;
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      margin: 20px auto 40px;
+      margin: 18px 0 36px;
       border-radius: 2px;
     }
-    .divider.left { margin-left: 0; }
+    .line.center { margin-left: auto; margin-right: auto; }
 
-    /* ===== CTA BUTTON ===== */
-    .btn-cta {
+    /* CTA BUTTON */
+    .btn {
       display: inline-block;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-      background-size: 200% 200%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
       color: #1a1a1a;
-      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-      font-weight: 800;
-      padding: 18px 48px;
+      font-weight: 900;
+      font-size: clamp(1rem, 3vw, 1.15rem);
+      padding: 18px 52px;
       border-radius: 50px;
       border: none;
       cursor: pointer;
       letter-spacing: 0.06em;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 30px rgba(201,168,76,0.5);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(201,168,76,0.45);
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-align: center;
     }
-    .btn-cta::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: rgba(255,255,255,0.15);
-      transform: rotate(45deg) translateX(-100%);
-      transition: transform 0.5s ease;
-    }
-    .btn-cta:hover::before { transform: rotate(45deg) translateX(100%); }
-    .btn-cta:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 40px rgba(201,168,76,0.65);
-      background-position: right center;
-    }
-    .btn-cta:active { transform: translateY(-1px); }
-    .btn-cta-outline {
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(201,168,76,0.6); }
+    .btn-outline {
       display: inline-block;
       border: 2px solid var(--gold);
       color: var(--gold);
-      font-size: 1rem;
       font-weight: 700;
+      font-size: 0.97rem;
       padding: 14px 36px;
       border-radius: 50px;
-      cursor: pointer;
-      background: transparent;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
+      transition: all 0.25s;
+      letter-spacing: 0.04em;
     }
-    .btn-cta-outline:hover {
-      background: var(--gold);
-      color: #1a1a1a;
-      transform: translateY(-2px);
-    }
+    .btn-outline:hover { background: var(--gold); color: #1a1a1a; }
 
-    /* ===== HEADER / NAV ===== */
+    /* ===== HEADER ===== */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(13,13,13,0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(13,13,13,0.93);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(201,168,76,0.2);
-      transition: all 0.3s;
     }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
+    .header-in {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; max-width: 960px; margin: 0 auto; padding: 0 20px;
     }
-    .logo {
-      font-size: 1.1rem;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 0.15em;
-    }
+    .logo { font-size: 1rem; font-weight: 900; color: #fff; letter-spacing: 0.14em; }
     .logo span { color: var(--gold); }
-    nav { display: flex; gap: 28px; align-items: center; }
-    nav a {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: var(--gold); }
-    .nav-cta {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: #1a1a1a !important;
-      font-weight: 700;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 0.82rem !important;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease !important;
-    }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,168,76,0.5); }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
+    .header-cta { font-size: 0.82rem; padding: 9px 22px; }
 
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
+      background: var(--black);
       position: relative;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
       overflow: hidden;
-      background: var(--black);
     }
     .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1600&q=80');
-      background-size: cover;
-      background-position: center 30%;
-      opacity: 0.38;
-      transform: scale(1.03);
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1400&q=75') center 30% / cover no-repeat;
+      opacity: 0.35;
     }
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.55) 60%, rgba(13,13,13,0.35) 100%);
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(13,13,13,0.88) 50%, rgba(13,13,13,0.4));
     }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 120px 20px 80px;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
+    .hero-body {
+      position: relative; z-index: 2;
+      padding: 110px 20px 60px;
+      max-width: 960px; margin: 0 auto; width: 100%;
     }
-    .hero-badge {
+    .hero-tag {
       display: inline-block;
       border: 1px solid var(--gold);
       color: var(--gold);
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      padding: 6px 18px;
+      font-size: 0.73rem;
+      letter-spacing: 0.2em;
+      padding: 5px 16px;
       border-radius: 50px;
-      margin-bottom: 28px;
-      font-weight: 600;
-    }
-    .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 4.2rem);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.2;
-      letter-spacing: 0.02em;
       margin-bottom: 24px;
     }
-    .hero h1 .accent { color: var(--gold); }
-    .hero h1 .accent-line {
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 3.8rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.18;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .hl {
+      color: var(--gold);
       display: inline-block;
       border-bottom: 3px solid var(--gold);
       padding-bottom: 2px;
     }
-    .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 16px;
-      line-height: 1.8;
-      max-width: 600px;
+    .hero-lead {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 12px;
+      line-height: 1.85;
+      max-width: 540px;
     }
-    .hero-note {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 40px;
+    .hero-note { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .hero-free {
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      display: flex; align-items: center; gap: 6px;
     }
-    .hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-    .hero-trial-note {
-      color: rgba(255,255,255,0.65);
-      font-size: 0.82rem;
-      letter-spacing: 0.03em;
-    }
-    .hero-trial-note strong { color: var(--gold-light); }
+    .hero-free strong { color: var(--gold-light); }
     .hero-stats {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      gap: 40px;
-      padding: 0 20px 60px;
-      max-width: 1100px;
-      margin: 0 auto;
-      flex-wrap: wrap;
+      position: relative; z-index: 2;
+      display: flex; gap: 36px; flex-wrap: wrap;
+      padding: 0 20px 56px;
+      max-width: 960px; margin: 0 auto;
     }
-    .hero-stat { text-align: left; }
-    .hero-stat-num {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      color: var(--gold);
-      line-height: 1;
-      letter-spacing: -0.02em;
+    .stat-num {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 900; color: var(--gold); line-height: 1;
     }
-    .hero-stat-num span { font-size: 0.55em; font-weight: 700; }
-    .hero-stat-label {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.6);
-      margin-top: 4px;
-      letter-spacing: 0.04em;
-    }
+    .stat-num sub { font-size: 0.55em; }
+    .stat-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
 
-    /* ===== PAIN POINTS ===== */
+    /* ===== PAIN ===== */
     .pain { background: var(--cream); }
-    .pain-intro { text-align: center; margin-bottom: 52px; }
+    .pain-head { text-align: center; margin-bottom: 44px; }
     .pain-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-bottom: 52px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 44px;
     }
     .pain-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 28px 24px;
-      display: flex;
-      gap: 18px;
-      align-items: flex-start;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex; gap: 14px; align-items: flex-start;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.06);
       border-left: 4px solid transparent;
-      transition: all 0.3s;
+      transition: border-color 0.25s, transform 0.25s;
     }
-    .pain-card:hover {
-      border-left-color: var(--gold);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
-    .pain-icon {
-      font-size: 2rem;
-      flex-shrink: 0;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .pain-text h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-    .pain-text p {
-      font-size: 0.88rem;
-      color: var(--text-sub);
-      line-height: 1.6;
-    }
+    .pain-card:hover { border-left-color: var(--gold); transform: translateY(-3px); }
+    .pain-card .ic { font-size: 1.7rem; flex-shrink: 0; }
+    .pain-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 5px; }
+    .pain-card p { font-size: 0.84rem; color: var(--sub); line-height: 1.6; }
     .pain-resolve {
-      text-align: center;
-      background: var(--black);
-      border-radius: 20px;
-      padding: 40px 32px;
-      color: var(--white);
+      background: var(--black); border-radius: 16px;
+      padding: 36px 28px; text-align: center; color: #fff;
     }
     .pain-resolve p {
-      font-size: clamp(1.1rem, 3vw, 1.4rem);
-      font-weight: 700;
-      line-height: 1.6;
+      font-size: clamp(1.05rem, 3vw, 1.3rem);
+      font-weight: 700; line-height: 1.7;
     }
-    .pain-resolve p span { color: var(--gold); }
-    .pain-resolve .resolve-cta { margin-top: 28px; }
+    .pain-resolve em { color: var(--gold); font-style: normal; }
+    .pain-resolve .btn { margin-top: 24px; }
 
-    /* ===== BENEFITS ===== */
-    .benefits { background: var(--black); }
-    .benefits-intro { text-align: center; margin-bottom: 60px; }
-    .benefits-intro .section-title { color: var(--white); }
-    .benefits-intro .section-sub { color: var(--gold); }
-    .benefits-grid {
+    /* ===== FEATURES ===== */
+    .features { background: #fff; }
+    .features-head { margin-bottom: 44px; }
+    .feat-list { display: flex; flex-direction: column; gap: 24px; }
+    .feat-item {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
-    }
-    .benefit-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    .benefit-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(201,168,76,0.2);
-    }
-    .benefit-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      filter: brightness(0.75);
-      transition: filter 0.3s;
-    }
-    .benefit-card:hover .benefit-img { filter: brightness(0.9); }
-    .benefit-body { padding: 28px 24px; }
-    .benefit-num {
-      font-size: 3rem;
-      font-weight: 900;
-      color: rgba(201,168,76,0.18);
-      line-height: 1;
-      margin-bottom: 8px;
-      letter-spacing: -0.04em;
-    }
-    .benefit-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 12px;
-      letter-spacing: 0.02em;
-    }
-    .benefit-title span { color: var(--gold); }
-    .benefit-desc {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.75;
-    }
-    .benefit-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-    .benefit-tag {
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.3);
-      color: var(--gold-light);
-      font-size: 0.75rem;
-      padding: 4px 12px;
-      border-radius: 50px;
-      letter-spacing: 0.04em;
-    }
-
-    /* ===== REASONS / TRAINER ===== */
-    .reasons { background: var(--cream); }
-    .reasons-intro { text-align: center; margin-bottom: 60px; }
-    .reasons-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin-bottom: 60px;
-    }
-    .reason-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 36px 24px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .reason-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-    .reason-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-    .reason-card:hover::after { transform: scaleX(1); }
-    .reason-icon { font-size: 2.8rem; margin-bottom: 16px; }
-    .reason-title {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-    .reason-desc { font-size: 0.87rem; color: var(--text-sub); line-height: 1.65; }
-
-    /* TRAINER */
-    .trainer-section {
-      background: var(--black);
-      border-radius: 24px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-    }
-    .trainer-img-wrap {
-      position: relative;
-      min-height: 440px;
-      overflow: hidden;
-    }
-    .trainer-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.7) contrast(1.1);
-    }
-    .trainer-img-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, transparent 60%, var(--black));
-    }
-    .trainer-body {
-      padding: 48px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .trainer-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      font-weight: 600;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .trainer-name {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 0.04em;
-      margin-bottom: 6px;
-    }
-    .trainer-title {
-      font-size: 0.88rem;
-      color: var(--gold-light);
-      font-weight: 600;
-      margin-bottom: 24px;
-      letter-spacing: 0.04em;
-    }
-    .trainer-desc {
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.72);
-      line-height: 1.85;
-      margin-bottom: 28px;
-    }
-    .trainer-history {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .trainer-history-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.65);
-    }
-    .trainer-history-item::before {
-      content: '▸';
-      color: var(--gold);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    /* ===== FLOW ===== */
-    .flow { background: var(--white); }
-    .flow-intro { text-align: center; margin-bottom: 60px; }
-    .flow-steps {
-      display: grid;
-      grid-template-columns: 1fr 40px 1fr 40px 1fr;
-      align-items: start;
-      gap: 0;
-    }
-    .flow-step {
-      background: var(--gray-light);
-      border-radius: 20px;
-      padding: 36px 28px;
-      text-align: center;
-      position: relative;
-      transition: all 0.3s;
-    }
-    .flow-step:hover {
-      background: var(--warm);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-    }
-    .flow-step-num {
-      width: 56px;
-      height: 56px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: #1a1a1a;
-      margin: 0 auto 20px;
-    }
-    .flow-step-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-    .flow-step-desc {
-      font-size: 0.88rem;
-      color: var(--text-sub);
-      line-height: 1.7;
-    }
-    .flow-step-time {
-      display: inline-block;
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.3);
-      color: var(--gold-dark);
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 50px;
-      margin-top: 14px;
-    }
-    .flow-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 60px;
-      color: var(--gold);
-      font-size: 1.8rem;
-      font-weight: 300;
-    }
-    .flow-note {
-      margin-top: 40px;
+      grid-template-columns: 64px 1fr;
+      gap: 24px; align-items: start;
       background: var(--cream);
       border-radius: 16px;
-      padding: 24px 28px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
+      padding: 28px 24px;
+      transition: box-shadow 0.25s;
     }
-    .flow-note-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .flow-note-text { font-size: 0.9rem; color: var(--text-sub); line-height: 1.7; }
-    .flow-note-text strong { color: var(--text); }
+    .feat-item:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+    .feat-num {
+      font-size: 2.6rem; font-weight: 900;
+      color: rgba(201,168,76,0.25);
+      line-height: 1; text-align: center;
+    }
+    .feat-body h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+    .feat-body h3 span { color: var(--gold); }
+    .feat-body p { font-size: 0.88rem; color: var(--sub); line-height: 1.75; }
+    .feat-tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: #9a7a2e;
+      font-size: 0.74rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 50px;
+      margin-top: 10px;
+    }
 
-    /* ===== FAQ ===== */
-    .faq { background: var(--cream); }
-    .faq-intro { text-align: center; margin-bottom: 52px; }
-    .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 800px; margin: 0 auto 52px; }
-    .faq-item {
-      background: var(--white);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      transition: box-shadow 0.3s;
-    }
-    .faq-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.09); }
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 22px 24px;
-      cursor: pointer;
-      gap: 16px;
-      user-select: none;
-    }
-    .faq-question:hover { background: var(--gray-light); }
-    .faq-q-text {
-      font-size: 0.97rem;
-      font-weight: 700;
-      color: var(--text);
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .faq-q-label {
-      color: var(--gold);
-      font-weight: 900;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .faq-toggle {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--gray-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.3s;
-      font-size: 1.1rem;
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .faq-item.open .faq-toggle {
-      background: var(--gold);
-      color: var(--white);
-      transform: rotate(45deg);
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    .faq-item.open .faq-answer { max-height: 300px; }
-    .faq-a-inner {
-      padding: 16px 24px 22px 52px;
-      font-size: 0.9rem;
-      color: var(--text-sub);
-      line-height: 1.8;
-      border-top: 1px solid var(--gray-light);
-    }
-    .faq-cta { text-align: center; }
-
-    /* ===== FORM ===== */
-    .form-section { background: var(--black); }
-    .form-inner {
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .form-section .section-title { color: var(--white); }
-    .form-section .section-sub { color: var(--gold); }
-    .form-section .divider { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
-    .form-section p.form-lead {
-      color: rgba(255,255,255,0.65);
-      font-size: 0.95rem;
-      margin-bottom: 40px;
-      line-height: 1.75;
-    }
-    .form-section p.form-lead strong { color: var(--gold-light); }
-    form {
-      display: flex;
-      flex-direction: column;
+    /* ===== VOICES ===== */
+    .voices { background: var(--warm); }
+    .voices-head { text-align: center; margin-bottom: 44px; }
+    .voices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
-      text-align: left;
     }
-    .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-label {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.75);
-      font-weight: 600;
-      letter-spacing: 0.03em;
+    .voice-card {
+      background: #fff; border-radius: 16px;
+      padding: 28px 22px;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.06);
+      position: relative;
     }
-    .form-label .required {
-      background: var(--gold);
-      color: #1a1a1a;
-      font-size: 0.68rem;
-      padding: 2px 7px;
-      border-radius: 4px;
-      margin-left: 8px;
-      font-weight: 700;
-      vertical-align: middle;
+    .voice-card::before {
+      content: '\201C';
+      font-size: 4rem; line-height: 0.8;
+      color: var(--gold); opacity: 0.3;
+      position: absolute; top: 16px; left: 18px;
+      font-family: Georgia, serif;
     }
-    .form-input, .form-select, .form-textarea {
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.07);
-      color: var(--white);
-      font-size: 0.97rem;
-      font-family: inherit;
-      transition: all 0.3s;
-      outline: none;
+    .voice-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 12px; }
+    .voice-text {
+      font-size: 0.9rem; line-height: 1.75;
+      color: #333; margin-bottom: 18px;
     }
-    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.3); }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
+    .voice-meta { display: flex; align-items: center; gap: 12px; }
+    .voice-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--warm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .voice-name { font-size: 0.85rem; font-weight: 700; }
+    .voice-age { font-size: 0.78rem; color: var(--sub); }
+
+    /* ===== PRICE ===== */
+    .price { background: var(--black); }
+    .price-head { text-align: center; margin-bottom: 44px; }
+    .price-head .sec-title { color: #fff; }
+    .price-head .sec-label { color: var(--gold); }
+    .price-head .line { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+    .price-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .price-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 18px; padding: 32px 24px;
+      text-align: center; color: #fff;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .price-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .price-card.featured {
+      background: rgba(201,168,76,0.1);
       border-color: var(--gold);
-      background: rgba(201,168,76,0.07);
-      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
     }
-    .form-select { cursor: pointer; }
-    .form-select option { background: #1a1a1a; color: var(--white); }
-    .form-textarea { resize: vertical; min-height: 100px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-submit-wrap { text-align: center; padding-top: 8px; }
-    .form-submit-wrap .btn-cta { min-width: 300px; font-size: 1.1rem; padding: 20px 52px; }
-    .form-privacy {
-      text-align: center;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.35);
-      margin-top: 8px;
+    .price-badge {
+      display: inline-block;
+      background: var(--gold); color: #1a1a1a;
+      font-size: 0.73rem; font-weight: 800;
+      padding: 4px 12px; border-radius: 50px;
+      margin-bottom: 14px; letter-spacing: 0.05em;
     }
-    .form-privacy a { color: rgba(201,168,76,0.7); text-decoration: underline; }
-    .trial-price-box {
+    .price-plan { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+    .price-amount {
+      font-size: 2.6rem; font-weight: 900;
+      color: #fff; line-height: 1;
+    }
+    .price-amount sub { font-size: 0.45em; vertical-align: baseline; }
+    .price-unit { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 4px; margin-bottom: 16px; }
+    .price-features { list-style: none; text-align: left; }
+    .price-features li {
+      font-size: 0.85rem; color: rgba(255,255,255,0.7);
+      padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex; gap: 8px;
+    }
+    .price-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .price-note {
+      text-align: center; font-size: 0.8rem;
+      color: rgba(255,255,255,0.35); line-height: 1.7;
+    }
+    .price-trial {
       background: rgba(201,168,76,0.1);
       border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 14px;
-      padding: 20px 24px;
-      text-align: center;
-      margin-bottom: 36px;
+      border-radius: 14px; padding: 22px 24px;
+      text-align: center; margin-bottom: 20px;
     }
-    .trial-price-label {
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 6px;
+    .trial-label { font-size: 0.78rem; letter-spacing: 0.15em; color: var(--gold); font-weight: 700; }
+    .trial-price {
+      font-size: 2rem; font-weight: 900; color: #fff; margin: 6px 0 2px;
     }
-    .trial-price-amount {
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: var(--white);
+    .trial-price s { font-size: 1rem; color: rgba(255,255,255,0.3); margin-right: 8px; font-weight: 400; }
+    .trial-note { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+
+    /* ===== CTA SECTION ===== */
+    .cta-sec { background: var(--cream); }
+    .cta-inner { text-align: center; max-width: 640px; margin: 0 auto; }
+    .cta-inner .sec-title { margin-bottom: 16px; }
+    .cta-inner p { font-size: 0.95rem; color: var(--sub); line-height: 1.8; margin-bottom: 36px; }
+    .cta-inner p strong { color: var(--text); }
+    .cta-form {
+      background: #fff; border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.08);
     }
-    .trial-price-amount s {
-      color: rgba(255,255,255,0.3);
-      font-size: 1.1rem;
-      font-weight: 400;
-      margin-right: 10px;
+    .form-title {
+      font-size: 1.1rem; font-weight: 800;
+      margin-bottom: 24px; text-align: center;
     }
-    .trial-price-amount span { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.6); }
-    .trial-price-note { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .form-title span { color: var(--gold); }
+    .fgroup { margin-bottom: 16px; }
+    .fgroup label {
+      display: block; font-size: 0.85rem; font-weight: 700;
+      margin-bottom: 6px; color: #333;
+    }
+    .fgroup label .req {
+      background: var(--gold); color: #1a1a1a;
+      font-size: 0.65rem; font-weight: 800;
+      padding: 2px 7px; border-radius: 3px;
+      margin-left: 6px; vertical-align: middle;
+    }
+    .fgroup input, .fgroup select, .fgroup textarea {
+      width: 100%; padding: 12px 15px;
+      border: 1.5px solid #e0ddd8;
+      border-radius: 10px; font-size: 0.95rem;
+      font-family: inherit; outline: none;
+      transition: border-color 0.2s;
+      background: #fff; color: var(--text);
+    }
+    .fgroup input:focus, .fgroup select:focus, .fgroup textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+    .fgroup textarea { resize: vertical; min-height: 90px; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-submit { text-align: center; margin-top: 8px; }
+    .form-submit .btn { min-width: 280px; }
+    .form-privacy {
+      font-size: 0.75rem; color: #aaa; margin-top: 10px; text-align: center;
+    }
 
     /* ===== FOOTER ===== */
     footer {
       background: #050505;
       border-top: 1px solid rgba(201,168,76,0.15);
-      padding: 52px 0 24px;
+      padding: 36px 0 20px;
     }
-    .footer-inner {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 40px;
+    .footer-in {
+      max-width: 960px; margin: 0 auto; padding: 0 20px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px; text-align: center;
     }
-    .footer-brand .logo { font-size: 1.2rem; margin-bottom: 14px; }
-    .footer-brand p {
-      font-size: 0.83rem;
-      color: rgba(255,255,255,0.4);
-      line-height: 1.75;
-    }
-    .footer-col h4 {
-      font-size: 0.82rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul li a {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.45);
-      transition: color 0.2s;
-    }
-    .footer-col ul li a:hover { color: var(--gold); }
-    .footer-col .info-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.6;
-    }
-    .footer-col .info-item span:first-child { flex-shrink: 0; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
-    .footer-links { display: flex; gap: 20px; }
-    .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.25); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
+    .footer-logo { font-size: 1rem; font-weight: 900; color: #fff; letter-spacing: 0.14em; }
+    .footer-logo span { color: var(--gold); }
+    .footer-info { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
 
-    /* ===== STICKY CTA BAR ===== */
-    .sticky-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 99;
-      background: rgba(13,13,13,0.96);
+    /* ===== STICKY BAR ===== */
+    .sticky {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(13,13,13,0.95);
       border-top: 1px solid rgba(201,168,76,0.25);
-      padding: 12px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      display: flex; justify-content: center; align-items: center; gap: 14px;
+      z-index: 99;
       transform: translateY(100%);
-      transition: transform 0.4s ease;
+      transition: transform 0.35s;
     }
-    .sticky-bar.visible { transform: translateY(0); }
-    .sticky-bar-text {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
-    }
-    .sticky-bar-text strong { color: var(--gold); }
+    .sticky.show { transform: translateY(0); }
+    .sticky p { font-size: 0.87rem; color: rgba(255,255,255,0.7); }
+    .sticky p strong { color: var(--gold); }
+    .sticky .btn { padding: 11px 28px; font-size: 0.9rem; }
 
     /* ===== MODAL ===== */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
+    .modal-bg {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
       transition: opacity 0.3s;
       padding: 20px;
     }
-    .modal-overlay.active { opacity: 1; pointer-events: all; }
-    .modal {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 52px 44px;
-      max-width: 480px;
-      width: 100%;
+    .modal-bg.on { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: #fff; border-radius: 20px;
+      padding: 48px 36px; max-width: 440px; width: 100%;
       text-align: center;
-      transform: scale(0.9) translateY(20px);
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform: scale(0.88) translateY(16px);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .modal-overlay.active .modal { transform: scale(1) translateY(0); }
+    .modal-bg.on .modal-box { transform: scale(1) translateY(0); }
     .modal-icon {
-      width: 80px;
-      height: 80px;
+      width: 72px; height: 72px; border-radius: 50%;
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-size: 2.2rem;
+      margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
     }
-    .modal h2 {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 14px;
-      line-height: 1.35;
-    }
-    .modal p {
-      font-size: 0.93rem;
-      color: var(--text-sub);
-      line-height: 1.8;
-      margin-bottom: 28px;
-    }
-    .modal p strong { color: var(--gold-dark); }
+    .modal-box h2 { font-size: 1.3rem; font-weight: 900; margin-bottom: 12px; line-height: 1.4; }
+    .modal-box p { font-size: 0.88rem; color: var(--sub); line-height: 1.8; margin-bottom: 24px; }
+    .modal-box p strong { color: #9a7a2e; }
     .modal-close {
-      display: inline-block;
-      background: var(--black);
-      color: var(--white);
-      font-size: 0.9rem;
-      font-weight: 700;
-      padding: 14px 40px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-      letter-spacing: 0.04em;
+      background: var(--black); color: #fff;
+      font-size: 0.88rem; font-weight: 700;
+      padding: 12px 36px; border-radius: 50px;
+      border: none; cursor: pointer; transition: background 0.2s;
     }
-    .modal-close:hover { background: #333; transform: translateY(-2px); }
-
-    /* ===== SCROLL ANIMATION ===== */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    .stagger-1 { transition-delay: 0.1s; }
-    .stagger-2 { transition-delay: 0.2s; }
-    .stagger-3 { transition-delay: 0.3s; }
+    .modal-close:hover { background: #333; }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      nav { display: none; }
-      nav.open {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        inset: 0;
-        background: rgba(13,13,13,0.98);
-        justify-content: center;
-        align-items: center;
-        gap: 32px;
-        z-index: 200;
-      }
-      nav.open a { font-size: 1.2rem; }
-      .hamburger { display: flex; z-index: 201; position: relative; }
-      .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-      .hamburger.open span:nth-child(2) { opacity: 0; }
-      .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-      .trainer-section { grid-template-columns: 1fr; }
-      .trainer-img-wrap { min-height: 280px; }
-      .trainer-img-overlay { background: linear-gradient(to top, var(--black), transparent); }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 700px) {
-      .section { padding: 56px 0; }
-      .flow-steps { grid-template-columns: 1fr; gap: 16px; }
-      .flow-arrow { display: none; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-      .hero-stats { gap: 24px; }
-      .sticky-bar-text { display: none; }
-    }
-    @media (max-width: 480px) {
-      .btn-cta { padding: 16px 32px; }
-      .hero-cta-group { flex-direction: column; align-items: flex-start; }
-      .modal { padding: 36px 24px; }
+    @media (max-width: 680px) {
+      .sec { padding: 52px 0; }
+      .frow { grid-template-columns: 1fr; }
+      .cta-form { padding: 28px 18px; }
+      .feat-item { grid-template-columns: 1fr; gap: 8px; }
+      .feat-num { font-size: 1.8rem; text-align: left; }
+      .hero-btns { flex-direction: column; align-items: flex-start; }
+      .sticky p { display: none; }
+      .price-cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER -->
 <header>
-  <div class="header-inner">
+  <div class="header-in">
     <div class="logo">BOXING STUDIO <span>[NAME]</span></div>
-    <nav id="nav">
-      <a href="#pain">お悩みの方へ</a>
-      <a href="#benefits">ボクシングの効果</a>
-      <a href="#reasons">選ばれる理由</a>
-      <a href="#faq">よくある質問</a>
-      <a href="#form-section" class="nav-cta">無料体験を申し込む</a>
-    </nav>
-    <div class="hamburger" id="hamburger" onclick="toggleNav()">
-      <span></span><span></span><span></span>
-    </div>
+    <a href="#cta" class="btn header-cta">無料体験を予約</a>
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="hero">
+<!-- ① HERO -->
+<section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content container">
-    <div class="hero-badge fade-up">PERSONAL BOXING GYM FOR WOMEN</div>
-    <h1 class="fade-up stagger-1">
-      <span class="accent-line">汗をかいて、</span>強くなる。<br>
-      40代からの<span class="accent">新しい私</span>へ。
+  <div class="hero-body wrap">
+    <div class="hero-tag">神戸三宮 ／ 女性専用ボクシングジム</div>
+    <h1>
+      ミットを叩いて、<br>
+      <span class="hl">スッキリ。</span><br>
+      <span class="hl">変わる。</span><br>
+      自信になる。
     </h1>
-    <p class="hero-sub fade-up stagger-2">
-      パンチを打つたびに、ストレスが飛んでいく。<br>
-      完全マンツーマンだから、初心者でも安心。<br>
-      自分史上最強のカラダと心を手に入れませんか？
+    <p class="hero-lead">
+      更年期・体型変化・毎日のストレス——<br>
+      40代・50代の悩みに向き合う、<br>
+      女性専用のパーソナルボクシングジムです。
     </p>
-    <p class="hero-note fade-up stagger-2">※運動未経験・ボクシング未経験の方も大歓迎です</p>
-    <div class="hero-cta-group fade-up stagger-3">
-      <a href="#form-section" class="btn-cta">✦ 無料体験トレーニングを申し込む</a>
-      <p class="hero-trial-note"><strong>初回体験：完全無料</strong>｜所要時間 約90分</p>
+    <p class="hero-note">※運動未経験・ボクシング初めての方が9割です</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn">✦ 無料体験を予約する</a>
+      <p class="hero-free"><strong>初回体験 完全無料</strong>｜所要約60分</p>
     </div>
   </div>
-  <div class="hero-stats container">
-    <div class="hero-stat fade-up">
-      <div class="hero-stat-num">98<span>%</span></div>
-      <div class="hero-stat-label">体験後の満足度</div>
+  <div class="hero-stats wrap">
+    <div>
+      <div class="stat-num">9<sub>割</sub></div>
+      <div class="stat-lbl">初心者からスタート</div>
     </div>
-    <div class="hero-stat fade-up stagger-1">
-      <div class="hero-stat-num">12<span>年</span></div>
-      <div class="hero-stat-label">トレーナー指導歴</div>
+    <div>
+      <div class="stat-num">30<sub>分</sub></div>
+      <div class="stat-lbl">しっかり運動できる</div>
     </div>
-    <div class="hero-stat fade-up stagger-2">
-      <div class="hero-stat-num">200<span>名+</span></div>
-      <div class="hero-stat-label">女性会員実績</div>
-    </div>
-    <div class="hero-stat fade-up stagger-3">
-      <div class="hero-stat-num">0<span>円</span></div>
-      <div class="hero-stat-label">入会金（今だけ）</div>
+    <div>
+      <div class="stat-num">40<sub>・</sub>50<sub>代</sub></div>
+      <div class="stat-lbl">メイン会員層</div>
     </div>
   </div>
 </section>
 
-<!-- ===== PAIN POINTS ===== -->
-<section class="section pain" id="pain">
-  <div class="container">
-    <div class="pain-intro fade-up">
-      <p class="section-sub">Does this sound familiar?</p>
-      <h2 class="section-title">こんな<span>お悩み</span>ありませんか？</h2>
-      <div class="divider"></div>
+<!-- ② PAIN -->
+<section class="sec pain" id="pain">
+  <div class="wrap">
+    <div class="pain-head">
+      <p class="sec-label">Does this sound familiar?</p>
+      <h2 class="sec-title">こんな<em>悩み</em>ありませんか？</h2>
+      <div class="line center"></div>
     </div>
     <div class="pain-grid">
-      <div class="pain-card fade-up">
-        <div class="pain-icon">😮‍💨</div>
-        <div class="pain-text">
-          <h3>毎日なんとなくストレスが溜まっている</h3>
-          <p>仕事・家事・育児…気づけば自分のための時間がまったくない。心がずっとモヤモヤしている気がする。</p>
+      <div class="pain-card">
+        <div class="ic">😮‍💨</div>
+        <div>
+          <h3>毎日モヤモヤ、ストレスが溜まる</h3>
+          <p>仕事・家事・人間関係…気づいたら自分のための時間がない。発散できる場所が欲しい。</p>
         </div>
       </div>
-      <div class="pain-card fade-up stagger-1">
-        <div class="pain-icon">🪞</div>
-        <div class="pain-text">
-          <h3>体型が気になり始めたのに、続くジムが見つからない</h3>
-          <p>マシンジムに入会してみたけど、何をしたらいいかわからず、気づいたら行かなくなっていた。</p>
+      <div class="pain-card">
+        <div class="ic">🌡️</div>
+        <div>
+          <h3>更年期の不調が気になっている</h3>
+          <p>ほてり・だるさ・気分の波…運動が良いと聞くけど、何から始めればいいかわからない。</p>
         </div>
       </div>
-      <div class="pain-card fade-up stagger-2">
-        <div class="pain-icon">🙁</div>
-        <div class="pain-text">
-          <h3>ボクシングをやってみたいけど、自分には無理かも…</h3>
-          <p>若い人や体力のある人だけのスポーツだと思っていた。運動音痴だし、ケガしそうで怖い。</p>
+      <div class="pain-card">
+        <div class="ic">🪞</div>
+        <div>
+          <h3>体型の変化が気になりだした</h3>
+          <p>以前と同じ食事なのに太りやすくなった。引き締めたいのに続けられる運動が見つからない。</p>
         </div>
       </div>
-      <div class="pain-card fade-up">
-        <div class="pain-icon">😔</div>
-        <div class="pain-text">
-          <h3>一人でジムに行くのは少し不安・緊張する</h3>
-          <p>女性一人でも入りやすい雰囲気なのか、どんな人が通っているのかが気になって踏み出せない。</p>
+      <div class="pain-card">
+        <div class="ic">😰</div>
+        <div>
+          <h3>ジムは怖い・続かない経験がある</h3>
+          <p>マシンジムに入ったけど使い方がわからず退会…一人でも安心して通える場所が欲しい。</p>
         </div>
       </div>
-      <div class="pain-card fade-up stagger-1">
-        <div class="pain-icon">⏰</div>
-        <div class="pain-text">
-          <h3>忙しくて定期的に通えるか不安</h3>
-          <p>週に何日も通わないといけないのかな？自分のペースで無理なく続けられるか心配。</p>
+      <div class="pain-card">
+        <div class="ic">⏰</div>
+        <div>
+          <h3>忙しくてまとまった時間が取れない</h3>
+          <p>仕事や家事でバタバタ。長時間の運動は難しい。短時間でも効果が出る方法を知りたい。</p>
         </div>
       </div>
-      <div class="pain-card fade-up stagger-2">
-        <div class="pain-icon">💪</div>
-        <div class="pain-text">
-          <h3>自信を持てない自分を変えたい</h3>
-          <p>何かを達成した充実感や、自分に自信を持てる感覚を久しく感じていない気がする。</p>
+      <div class="pain-card">
+        <div class="ic">💭</div>
+        <div>
+          <h3>自分に自信を持ちたい</h3>
+          <p>「何かを頑張った」という達成感が久しくない。自信を持って毎日を過ごしたい。</p>
         </div>
       </div>
     </div>
-    <div class="pain-resolve fade-up">
-      <p>そのすべてのお悩みを、<span>BOXING STUDIO [NAME]</span>の体験トレーニングで解決しましょう。<br>初めての方・運動未経験の方に、<span>最も寄り添えるジム</span>でありたいと思っています。</p>
-      <div class="resolve-cta">
-        <a href="#form-section" class="btn-cta">まずは無料体験を試してみる →</a>
-      </div>
+    <div class="pain-resolve">
+      <p>そのお悩み、<em>ミット打ち60分</em>で変わります。<br>40代・50代女性が通う、神戸三宮の<em>女性専用ジム</em>へ。</p>
+      <a href="#cta" class="btn">まずは無料体験してみる →</a>
     </div>
   </div>
 </section>
 
-<!-- ===== BENEFITS ===== -->
-<section class="section benefits" id="benefits">
-  <div class="container">
-    <div class="benefits-intro fade-up">
-      <p class="section-sub">3 Changes You'll Notice</p>
-      <h2 class="section-title" style="color:var(--white)">ボクシングで得られる<br><span>3つの変化</span></h2>
-      <div class="divider"></div>
+<!-- ③ FEATURES -->
+<section class="sec features" id="features">
+  <div class="wrap">
+    <div class="features-head">
+      <p class="sec-label">Why Choose Us</p>
+      <h2 class="sec-title">このジムが<em>選ばれる</em>理由</h2>
+      <div class="line"></div>
     </div>
-    <div class="benefits-grid">
-      <div class="benefit-card fade-up">
-        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="ストレス発散" class="benefit-img">
-        <div class="benefit-body">
-          <div class="benefit-num">01</div>
-          <h3 class="benefit-title">ストレス発散・<span>リフレッシュ</span></h3>
-          <p class="benefit-desc">思い切りパンチを打つことで、溜まったストレスがスカッと解消。「こんなに爽快感があるスポーツは初めて」という声が多数。セッション後は頭も心もスッキリします。</p>
-          <div class="benefit-tags">
-            <span class="benefit-tag">セロトニン増加</span>
-            <span class="benefit-tag">爽快感</span>
-            <span class="benefit-tag">思考クリア</span>
-          </div>
+    <div class="feat-list">
+      <div class="feat-item">
+        <div class="feat-num">01</div>
+        <div class="feat-body">
+          <h3><span>ミット打ち</span>でストレスが一気に飛ぶ</h3>
+          <p>思いっきりパンチを打つ爽快感は格別。「こんなに発散できたのは初めて」という声が続出。ミット打ちはインストラクターが受けるので、一人で練習するよりずっと楽しく、効果的です。</p>
+          <span class="feat-tag">爽快感 / セロトニン増加 / 達成感</span>
         </div>
       </div>
-      <div class="benefit-card fade-up stagger-1">
-        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80" alt="健康維持" class="benefit-img">
-        <div class="benefit-body">
-          <div class="benefit-num">02</div>
-          <h3 class="benefit-title">健康維持・<span>体力づくり</span></h3>
-          <p class="benefit-desc">ボクシングは全身運動。有酸素運動と筋トレが同時にできるため、基礎代謝アップ・体幹強化・脂肪燃焼に効果的。週1〜2回で体の変化を実感できます。</p>
-          <div class="benefit-tags">
-            <span class="benefit-tag">全身運動</span>
-            <span class="benefit-tag">代謝アップ</span>
-            <span class="benefit-tag">体幹強化</span>
-          </div>
+      <div class="feat-item">
+        <div class="feat-num">02</div>
+        <div class="feat-body">
+          <h3>更年期・体型変化の悩みに<span>寄り添う</span>プログラム</h3>
+          <p>ボクシングは有酸素運動＋筋トレを同時に行う全身運動。基礎代謝アップ・ホルモンバランスの安定・骨密度維持など、40代・50代の女性の体に嬉しい効果が期待できます。</p>
+          <span class="feat-tag">代謝アップ / 体幹強化 / ホルモンバランス</span>
         </div>
       </div>
-      <div class="benefit-card fade-up stagger-2">
-        <img src="https://images.unsplash.com/photo-1604480133080-602a72e14db5?w=600&q=80" alt="自信" class="benefit-img">
-        <div class="benefit-body">
-          <div class="benefit-num">03</div>
-          <h3 class="benefit-title">自信・<span>メンタル強化</span></h3>
-          <p class="benefit-desc">できなかった技が出来るようになる、体が変わっていく。小さな成功体験の積み重ねが、日常生活の自信につながります。「別人みたいに前向きになった」そんな変化を実感してください。</p>
-          <div class="benefit-tags">
-            <span class="benefit-tag">達成感</span>
-            <span class="benefit-tag">自己効力感</span>
-            <span class="benefit-tag">姿勢改善</span>
-          </div>
+      <div class="feat-item">
+        <div class="feat-num">03</div>
+        <div class="feat-body">
+          <h3><span>30分</span>でしっかり運動できる</h3>
+          <p>忙しい方でも通いやすい30分集中プログラムをご用意。三宮駅から徒歩圏内なので、仕事帰り・買い物のついでに立ち寄れます。時間のない方こそ、効率よく動けるボクシングを。</p>
+          <span class="feat-tag">30分完結 / 三宮駅近 / 仕事帰りOK</span>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-num">04</div>
+        <div class="feat-body">
+          <h3>初心者<span>9割</span>・女性が安心できる雰囲気</h3>
+          <p>会員の9割がボクシング未経験からスタート。「怖そう」「きつそう」というイメージとは真逆の、明るくアットホームな空間です。女性スタッフも在籍しており、一人でも安心してご来店いただけます。</p>
+          <span class="feat-tag">初心者歓迎 / 女性スタッフ在籍 / マンツーマン</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== REASONS ===== -->
-<section class="section reasons" id="reasons">
-  <div class="container">
-    <div class="reasons-intro fade-up">
-      <p class="section-sub">Why Choose Us</p>
-      <h2 class="section-title">BOXING STUDIO [NAME]が<br><span>選ばれる理由</span></h2>
-      <div class="divider"></div>
+<!-- ④ VOICES -->
+<section class="sec voices" id="voices">
+  <div class="wrap">
+    <div class="voices-head">
+      <p class="sec-label">Customer Voices</p>
+      <h2 class="sec-title">お客様の<em>声</em></h2>
+      <div class="line center"></div>
     </div>
-    <div class="reasons-grid">
-      <div class="reason-card fade-up">
-        <div class="reason-icon">🥊</div>
-        <h3 class="reason-title">元プロが教える<br>本物の技術</h3>
-        <p class="reason-desc">競技経験のあるトレーナーだからこそ、正しいフォームと効果的な練習方法を丁寧に指導。上達の速さが違います。</p>
+    <div class="voices-grid">
+      <div class="voice-card">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">ミットを打った瞬間、なんとも言えない爽快感！仕事のストレスが全部飛んでいきました。こんなに楽しく汗をかけるとは思っていなかった。もっと早く始めればよかった！</p>
+        <div class="voice-meta">
+          <div class="voice-avatar">🙋</div>
+          <div>
+            <div class="voice-name">K.M さん</div>
+            <div class="voice-age">47歳・会社員／通い始めて4ヶ月</div>
+          </div>
+        </div>
       </div>
-      <div class="reason-card fade-up stagger-1">
-        <div class="reason-icon">👤</div>
-        <h3 class="reason-title">完全マンツーマン<br>あなただけの指導</h3>
-        <p class="reason-desc">グループレッスンとは異なり、あなたのペースと目標に合わせた完全オーダーメイドのトレーニングを提供。</p>
+      <div class="voice-card">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">更年期でずっと体がだるかったのに、通い始めて1ヶ月で体が軽くなりました。ほてりも少し改善した気がします。先生がペースを合わせてくださるので無理なく続けられています。</p>
+        <div class="voice-meta">
+          <div class="voice-avatar">🙋</div>
+          <div>
+            <div class="voice-name">T.S さん</div>
+            <div class="voice-age">52歳・パート主婦／通い始めて2ヶ月</div>
+          </div>
+        </div>
       </div>
-      <div class="reason-card fade-up stagger-2">
-        <div class="reason-icon">🌸</div>
-        <h3 class="reason-title">女性も安心の<br>アットホームな雰囲気</h3>
-        <p class="reason-desc">怖い・きついイメージとは無縁。女性会員が多く、初めての方でも気軽に入れるやさしい空間づくりをしています。</p>
-      </div>
-      <div class="reason-card fade-up">
-        <div class="reason-icon">📍</div>
-        <h3 class="reason-title">通いやすい<br>柔軟なスケジュール</h3>
-        <p class="reason-desc">週1回からOK。平日・土日・夜間にも対応。お仕事や家事の合間にも無理なく通い続けられます。</p>
-      </div>
-      <div class="reason-card fade-up stagger-1">
-        <div class="reason-icon">🎽</div>
-        <h3 class="reason-title">用具は全て<br>ジムで用意</h3>
-        <p class="reason-desc">グローブ・バンテージなど必要な用具はすべてジムに揃っています。手ぶら（動きやすい服装）でOK。</p>
-      </div>
-      <div class="reason-card fade-up stagger-2">
-        <div class="reason-icon">🏆</div>
-        <h3 class="reason-title">目標に応じた<br>プログラム設計</h3>
-        <p class="reason-desc">ダイエット・体力づくり・メンタルケアなど、あなたの目的に合わせた専用プログラムを作成します。</p>
-      </div>
-    </div>
-
-    <!-- TRAINER SECTION -->
-    <div class="trainer-section fade-up" style="margin-top:60px;">
-      <div class="trainer-img-wrap">
-        <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=800&q=80" alt="トレーナー" class="trainer-img">
-        <div class="trainer-img-overlay"></div>
-      </div>
-      <div class="trainer-body">
-        <p class="trainer-label">Head Trainer</p>
-        <h3 class="trainer-name">SATOSHI TANAKA</h3>
-        <p class="trainer-title">元プロボクサー / パーソナルトレーナー歴12年</p>
-        <p class="trainer-desc">
-          「ボクシングは、強さだけのスポーツじゃない。自分を信じる力を育てるスポーツです。」<br><br>
-          特に40〜50代の女性が、初めてボクシングを通じて自分自身に自信を持てるようになる瞬間を見るのが、この仕事の最大の喜びです。怖くないから、大丈夫。一緒に楽しみましょう。
-        </p>
-        <div class="trainer-history">
-          <div class="trainer-history-item">元プロボクサー・東日本新人王準優勝</div>
-          <div class="trainer-history-item">パーソナルトレーナー指導実績 延べ2,000名以上</div>
-          <div class="trainer-history-item">JBBF認定インストラクター・健康運動指導士</div>
-          <div class="trainer-history-item">女性・シニア向けプログラム設計の専門資格保有</div>
+      <div class="voice-card">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">運動音痴で何をやっても続かなかった私が、もう半年以上通えています。30分なのにしっかり汗をかけるし、体重も4kg落ちました。女性の先生もいるので一人でも全然怖くないです。</p>
+        <div class="voice-meta">
+          <div class="voice-avatar">🙋</div>
+          <div>
+            <div class="voice-name">Y.O さん</div>
+            <div class="voice-age">44歳・看護師／通い始めて6ヶ月</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FLOW ===== -->
-<section class="section flow" id="flow">
-  <div class="container">
-    <div class="flow-intro fade-up">
-      <p class="section-sub">How It Works</p>
-      <h2 class="section-title">体験トレーニングの<span>流れ</span></h2>
-      <div class="divider"></div>
-      <p style="color:var(--text-sub); font-size:0.95rem;">はじめての方でも迷わずご参加いただけます。</p>
+<!-- ⑤ PRICE -->
+<section class="sec price" id="price">
+  <div class="wrap">
+    <div class="price-head">
+      <p class="sec-label">Pricing</p>
+      <h2 class="sec-title">料金プラン</h2>
+      <div class="line center"></div>
     </div>
-    <div class="flow-steps">
-      <div class="flow-step fade-up">
-        <div class="flow-step-num">1</div>
-        <h3 class="flow-step-title">カウンセリング<br>ヒアリング</h3>
-        <p class="flow-step-desc">目標・体の状態・ご不安な点を丁寧にお聞きします。ボクシング経験はまったく不要です。リラックスしてお話しください。</p>
-        <span class="flow-step-time">約15分</span>
-      </div>
-      <div class="flow-arrow fade-up">›</div>
-      <div class="flow-step fade-up stagger-1">
-        <div class="flow-step-num">2</div>
-        <h3 class="flow-step-title">基本動作＆<br>体験トレーニング</h3>
-        <p class="flow-step-desc">ストレッチから始まり、構え方・ステップ・基本パンチを丁寧にレクチャー。サンドバッグやミット打ちも体験できます！</p>
-        <span class="flow-step-time">約60分</span>
-      </div>
-      <div class="flow-arrow fade-up stagger-1">›</div>
-      <div class="flow-step fade-up stagger-2">
-        <div class="flow-step-num">3</div>
-        <h3 class="flow-step-title">フィードバック＆<br>プラン提案</h3>
-        <p class="flow-step-desc">体験後にご感想をうかがい、あなたに合ったプランをご提案します。入会の強制は一切ありませんのでご安心ください。</p>
-        <span class="flow-step-time">約15分</span>
-      </div>
-    </div>
-    <div class="flow-note fade-up">
-      <div class="flow-note-icon">ℹ️</div>
-      <div class="flow-note-text">
-        <strong>持ち物について：</strong>動きやすい服装とタオル・水分のみでOKです。グローブ・バンテージなどは無料でお貸し出しします。シャワー完備なので、仕事帰りのご参加も歓迎です。<br>
-        <strong>ご注意：</strong>体験当日は激しい運動を避けた体調でお越しください。体調不良の場合は無料でキャンセル・日程変更が可能です。
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ===== FAQ ===== -->
-<section class="section faq" id="faq">
-  <div class="container">
-    <div class="faq-intro fade-up">
-      <p class="section-sub">Frequently Asked Questions</p>
-      <h2 class="section-title">よくある<span>ご質問</span></h2>
-      <div class="divider"></div>
+    <div class="price-trial">
+      <div class="trial-label">TRIAL SESSION — まずはお試し</div>
+      <div class="trial-price"><s>¥3,300</s> 無料</div>
+      <div class="trial-note">初回体験トレーニング（約60分）※お一人様1回限り</div>
     </div>
-    <div class="faq-list fade-up">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <div class="faq-q-text"><span class="faq-q-label">Q.</span>ボクシング未経験でも大丈夫ですか？</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-a-inner">もちろん大丈夫です！当ジムの会員の約7割がボクシング未経験からスタートされています。構え方・歩き方など、基礎から丁寧に指導しますので、まったく心配しないでください。体験トレーニングは初心者専用のプログラムで行います。</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <div class="faq-q-text"><span class="faq-q-label">Q.</span>女性一人でも通いやすいですか？</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-a-inner">はい、もちろんです。現在通われている会員の約65%が女性で、40〜50代の方が最も多いです。完全マンツーマンのため、他のお客様と顔を合わせることもほとんどありません。初めての方でも安心して利用いただける環境を整えています。</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <div class="faq-q-text"><span class="faq-q-label">Q.</span>体力に自信がなくても大丈夫ですか？</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-a-inner">問題ありません。トレーニングの強度はお一人おひとりの体力・体調に合わせて設定します。「しんどい」と感じたらすぐに調整しますので、遠慮なくお伝えください。無理なく続けることが最も大切だと考えています。</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <div class="faq-q-text"><span class="faq-q-label">Q.</span>相手と殴り合いをするのですか？</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-a-inner">いいえ、当ジムはフィットネスボクシングが中心です。スパーリング（対人練習）は行いません。ミット・サンドバッグ・シャドーボクシングを中心としたトレーニングですので、怪我のリスクは極めて低く、安全に楽しんでいただけます。</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <div class="faq-q-text"><span class="faq-q-label">Q.</span>週に何回通えばいいですか？</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-a-inner">週1回からご利用いただけます。目標やライフスタイルに合わせてペースを決めましょう。多くの方は週1〜2回で十分な効果を感じていただいています。体験後にトレーナーと相談しながら、最適な頻度をご提案します。</div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <div class="faq-q-text"><span class="faq-q-label">Q.</span>体験後に入会を強制されませんか？</div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-a-inner">一切ありません。体験後はプランをご案内しますが、入会のご判断はお客様ご自身に完全にお任せしています。ゆっくりご検討いただいて構いません。高圧的な営業は絶対に行いませんので、安心してご参加ください。</div>
-        </div>
-      </div>
-    </div>
-    <div class="faq-cta fade-up">
-      <p style="color:var(--text-sub); font-size:0.9rem; margin-bottom:24px;">その他ご不明な点はお気軽にお問い合わせください。</p>
-      <a href="#form-section" class="btn-cta">無料体験を申し込む ✦</a>
-    </div>
-  </div>
-</section>
 
-<!-- ===== FORM ===== -->
-<section class="section form-section" id="form-section">
-  <div class="container">
-    <div class="form-inner">
-      <p class="section-sub fade-up">Free Trial Session</p>
-      <h2 class="section-title fade-up">体験トレーニング<br><span>お申し込みフォーム</span></h2>
-      <div class="divider fade-up"></div>
-      <p class="form-lead fade-up">まずはお気軽に体験トレーニングへ。<br><strong>初回は完全無料</strong>でご参加いただけます。<br>お申し込み後、担当者より24時間以内にご連絡いたします。</p>
-
-      <div class="trial-price-box fade-up">
-        <div class="trial-price-label">TRIAL SESSION PRICE</div>
-        <div class="trial-price-amount"><s>¥5,500</s> ¥0 <span>（税込）</span></div>
-        <div class="trial-price-note">※お一人様1回限り｜先着順のため定員になり次第締め切ります</div>
-      </div>
-
-      <form id="apply-form" class="fade-up" onsubmit="submitForm(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">お名前<span class="required">必須</span></label>
-            <input type="text" class="form-input" placeholder="山田 花子" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">フリガナ<span class="required">必須</span></label>
-            <input type="text" class="form-input" placeholder="ヤマダ ハナコ" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">電話番号<span class="required">必須</span></label>
-          <input type="tel" class="form-input" placeholder="090-1234-5678" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">メールアドレス</label>
-          <input type="email" class="form-input" placeholder="example@email.com">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">ご希望日<span class="required">必須</span></label>
-            <input type="date" class="form-input" id="date-input" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">ご希望時間帯<span class="required">必須</span></label>
-            <select class="form-select form-input" required>
-              <option value="" disabled selected>選択してください</option>
-              <option>平日 10:00〜13:00</option>
-              <option>平日 13:00〜17:00</option>
-              <option>平日 17:00〜21:00</option>
-              <option>土日祝 10:00〜13:00</option>
-              <option>土日祝 13:00〜17:00</option>
-              <option>土日祝 17:00〜20:00</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">ご参加の目的・ご要望（任意）</label>
-          <textarea class="form-textarea form-input" placeholder="例：ダイエット目的、ストレス発散、初心者なので不安…など何でもお書きください"></textarea>
-        </div>
-        <div class="form-submit-wrap">
-          <button type="submit" class="btn-cta">✦ 無料体験を申し込む</button>
-          <p class="form-privacy">ご入力いただいた情報は体験予約の目的にのみ使用し、<br><a href="#">プライバシーポリシー</a>に基づき適切に管理いたします。</p>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="logo">BOXING STUDIO <span>[NAME]</span></div>
-        <p>40〜50代女性のための<br>パーソナルボクシング専門ジム。<br>元プロトレーナーによる<br>完全マンツーマン指導。</p>
-      </div>
-      <div class="footer-col">
-        <h4>Menu</h4>
-        <ul>
-          <li><a href="#pain">こんな方におすすめ</a></li>
-          <li><a href="#benefits">ボクシングの効果</a></li>
-          <li><a href="#reasons">選ばれる理由</a></li>
-          <li><a href="#flow">体験の流れ</a></li>
-          <li><a href="#faq">よくある質問</a></li>
-          <li><a href="#form-section">体験を申し込む</a></li>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="price-plan">ライトプラン</div>
+        <div class="price-amount">¥9,900<sub>/月</sub></div>
+        <div class="price-unit">月4回（週1回）</div>
+        <ul class="price-features">
+          <li>30分パーソナルセッション×4回</li>
+          <li>グローブ・バンテージ無料貸出</li>
+          <li>入会金無料（期間限定）</li>
+          <li>LINEサポート付き</li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Access</h4>
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          <div class="info-item"><span>📍</span><span>〒xxx-xxxx<br>東京都○○区○○ x-x-x<br>○○ビル 3F</span></div>
-          <div class="info-item"><span>🚃</span><span>○○線「○○駅」<br>徒歩5分</span></div>
-          <div class="info-item"><span>📞</span><span>03-xxxx-xxxx</span></div>
-          <div class="info-item"><span>🕐</span><span>平日 10:00〜21:00<br>土日祝 10:00〜20:00</span></div>
-        </div>
+      <div class="price-card featured">
+        <div class="price-badge">おすすめ</div>
+        <div class="price-plan">スタンダードプラン</div>
+        <div class="price-amount">¥17,600<sub>/月</sub></div>
+        <div class="price-unit">月8回（週2回）</div>
+        <ul class="price-features">
+          <li>30分パーソナルセッション×8回</li>
+          <li>グローブ・バンテージ無料貸出</li>
+          <li>入会金無料（期間限定）</li>
+          <li>LINEサポート付き</li>
+          <li>食事・生活習慣アドバイス</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">集中プラン</div>
+        <div class="price-amount">¥23,100<sub>/月</sub></div>
+        <div class="price-unit">月12回（週3回）</div>
+        <ul class="price-features">
+          <li>30分パーソナルセッション×12回</li>
+          <li>グローブ・バンテージ無料貸出</li>
+          <li>入会金無料（期間限定）</li>
+          <li>LINEサポート付き</li>
+          <li>食事・生活習慣アドバイス</li>
+          <li>体組成測定・月次レポート</li>
+        </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 BOXING STUDIO [NAME]. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">プライバシーポリシー</a>
-        <a href="#">特定商取引法に基づく表記</a>
-        <a href="#">お問い合わせ</a>
+    <p class="price-note">※表示価格は税込です。月途中のご入会は日割り計算いたします。<br>詳細はお気軽にお問い合わせください。</p>
+  </div>
+</section>
+
+<!-- ⑥ CTA -->
+<section class="sec cta-sec" id="cta">
+  <div class="wrap">
+    <div class="cta-inner">
+      <p class="sec-label">Free Trial</p>
+      <h2 class="sec-title">無料体験を<em>予約する</em></h2>
+      <div class="line center"></div>
+      <p>
+        まずは60分、体を動かしてみてください。<br>
+        <strong>入会の強制は一切ありません。</strong><br>
+        お申し込み後、24時間以内にご連絡いたします。
+      </p>
+      <div class="cta-form">
+        <div class="form-title">体験トレーニング<span>お申し込みフォーム</span></div>
+        <form id="myform" onsubmit="doSubmit(event)">
+          <div class="frow">
+            <div class="fgroup">
+              <label>お名前<span class="req">必須</span></label>
+              <input type="text" placeholder="山田 花子" required>
+            </div>
+            <div class="fgroup">
+              <label>フリガナ<span class="req">必須</span></label>
+              <input type="text" placeholder="ヤマダ ハナコ" required>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label>電話番号<span class="req">必須</span></label>
+            <input type="tel" placeholder="090-1234-5678" required>
+          </div>
+          <div class="frow">
+            <div class="fgroup">
+              <label>ご希望日<span class="req">必須</span></label>
+              <input type="date" id="date-inp" required>
+            </div>
+            <div class="fgroup">
+              <label>ご希望時間帯<span class="req">必須</span></label>
+              <select required>
+                <option value="" disabled selected>選択してください</option>
+                <option>平日 午前（10〜12時）</option>
+                <option>平日 午後（13〜17時）</option>
+                <option>平日 夜（18〜21時）</option>
+                <option>土日祝 午前（10〜12時）</option>
+                <option>土日祝 午後（13〜17時）</option>
+              </select>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label>気になること・ご要望（任意）</label>
+            <textarea placeholder="例：更年期の不調が気になっています。運動初心者です。など"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn">✦ 無料体験を予約する</button>
+            <p class="form-privacy">個人情報は体験予約のみに使用し、第三者に提供しません。</p>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-in">
+    <div class="footer-logo">BOXING STUDIO <span>[NAME]</span></div>
+    <div class="footer-info">
+      〒651-00xx 兵庫県神戸市中央区○○町x-x-x ○○ビル xF<br>
+      JR・阪急・阪神「三宮駅」徒歩5分｜TEL: 078-xxx-xxxx<br>
+      営業時間：平日 10:00〜21:00／土日祝 10:00〜19:00
+    </div>
+    <div class="footer-copy">&copy; 2024 BOXING STUDIO [NAME]. All rights reserved.</div>
   </div>
 </footer>
 
-<!-- ===== STICKY BAR ===== -->
-<div class="sticky-bar" id="sticky-bar">
-  <span class="sticky-bar-text"><strong>初回体験 無料</strong>｜今すぐ申し込んで新しい私へ</span>
-  <a href="#form-section" class="btn-cta" style="padding:12px 28px; font-size:0.9rem;">体験を申し込む</a>
+<!-- STICKY BAR -->
+<div class="sticky" id="sticky">
+  <p><strong>初回体験 無料</strong>｜神戸三宮・女性専用ボクシングジム</p>
+  <a href="#cta" class="btn">無料体験を予約</a>
 </div>
 
-<!-- ===== MODAL ===== -->
-<div class="modal-overlay" id="modal">
-  <div class="modal">
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal-box">
     <div class="modal-icon">✓</div>
     <h2>お申し込みありがとうございます！</h2>
     <p>
       体験トレーニングのご予約を受け付けました。<br>
       <strong>24時間以内に担当者よりご連絡</strong>いたします。<br><br>
-      ご不明な点がございましたら、お気軽にお電話ください。<br>
-      皆様のご参加を心よりお待ちしております！
+      ご不明な点はお気軽にお電話ください。<br>
+      ご来店を心よりお待ちしております。
     </p>
     <button class="modal-close" onclick="closeModal()">閉じる</button>
   </div>
 </div>
 
-<!-- ===== JAVASCRIPT ===== -->
 <script>
-  function toggleNav() {
-    const nav = document.getElementById('nav');
-    const ham = document.getElementById('hamburger');
-    nav.classList.toggle('open');
-    ham.classList.toggle('open');
-  }
-  document.querySelectorAll('#nav a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.getElementById('nav').classList.remove('open');
-      document.getElementById('hamburger').classList.remove('open');
-    });
-  });
+  // sticky bar
+  const sticky = document.getElementById('sticky');
+  window.addEventListener('scroll', () => {
+    sticky.classList.toggle('show', window.scrollY > window.innerHeight * 0.7);
+  }, { passive: true });
 
-  function toggleFaq(el) {
-    const item = el.parentElement;
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  }
-
-  function submitForm(e) {
+  // form submit
+  function doSubmit(e) {
     e.preventDefault();
-    document.getElementById('modal').classList.add('active');
+    document.getElementById('modal').classList.add('on');
     document.body.style.overflow = 'hidden';
   }
   function closeModal() {
-    document.getElementById('modal').classList.remove('active');
+    document.getElementById('modal').classList.remove('on');
     document.body.style.overflow = '';
-    document.getElementById('apply-form').reset();
+    document.getElementById('myform').reset();
   }
   document.getElementById('modal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
   });
 
-  const stickyBar = document.getElementById('sticky-bar');
-  window.addEventListener('scroll', () => {
-    stickyBar.classList.toggle('visible', window.scrollY > window.innerHeight * 0.8);
-  }, { passive: true });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  const dateInput = document.getElementById('date-input');
-  if (dateInput) {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    dateInput.min = tomorrow.toISOString().split('T')[0];
+  // min date
+  const di = document.getElementById('date-inp');
+  if (di) {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    di.min = d.toISOString().split('T')[0];
   }
 </script>
 </body>
