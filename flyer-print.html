@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>UEMULAB チラシ 印刷用</title>
+  <style>
+    /* ===================================================
+       A4 + 塗り足し3mm = 216mm × 303mm
+       印刷時：Chromeで Ctrl+P → 送信先「PDFに保存」
+                用紙サイズ A4 ／ 余白「なし」
+                「背景のグラフィック」にチェック
+    =================================================== */
+
+    @page {
+      size: 216mm 303mm;
+      margin: 0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { height: 303mm; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+                   'Yu Gothic Medium', 'Yu Gothic', 'Meiryo', sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      background: #555;
+    }
+
+    /* ---- Screen preview ---- */
+    @media screen {
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px;
+        gap: 16px;
+      }
+      .guide {
+        background: #fff;
+        border-radius: 8px;
+        padding: 14px 20px;
+        max-width: 700px;
+        width: 100%;
+        font-size: 13px;
+        line-height: 1.75;
+        box-shadow: 0 4px 20px rgba(0,0,0,.25);
+      }
+      .guide h3 { font-size: 14px; color: #8B5c00; margin-bottom: 6px; }
+      .guide ol  { padding-left: 18px; }
+      .guide .warn { color: #c00; font-weight: 700; }
+      .page { box-shadow: 0 8px 40px rgba(0,0,0,.5); }
+    }
+    @media print {
+      body { background: transparent; padding: 0; }
+      .guide { display: none; }
+    }
+
+    /* ===== PAGE ===== */
+    .page {
+      width: 216mm;
+      height: 303mm;
+      position: relative;
+      overflow: hidden;
+      background: #fdf5e3;
+    }
+
+    /* ---- Gold gradient util ---- */
+    .gold-grad {
+      background: linear-gradient(135deg,#7a4f00,#c9900a,#f0c828,#c9900a,#7a4f00);
+    }
+    .gold-text {
+      background: linear-gradient(135deg,#7a4f00,#c9900a,#f0c828,#c9900a,#7a4f00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* =========================================
+       TOP BG GLOW (cream→gold shimmer top-right)
+    ========================================= */
+    .bg-glow {
+      position: absolute;
+      top: 0; right: 0;
+      width: 100mm; height: 80mm;
+      background: radial-gradient(ellipse at 70% 20%,
+        rgba(220,180,60,.45) 0%, rgba(240,200,80,.15) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .bg-glow2 {
+      position: absolute;
+      top: 0; left: 0;
+      width: 60mm; height: 50mm;
+      background: radial-gradient(ellipse at 30% 20%,
+        rgba(220,180,60,.25) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* =========================================
+       RIBBON
+    ========================================= */
+    .ribbon {
+      position: absolute;
+      top: 3mm; left: 0; right: 0;
+      height: 9.5mm;
+      background: linear-gradient(135deg,
+        #7a4f00 0%,#c9900a 25%,#f0c828 50%,#c9900a 75%,#7a4f00 100%);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 20;
+    }
+    .ribbon::before, .ribbon::after {
+      content: '◆';
+      color: rgba(255,255,255,.5);
+      font-size: 3.5mm;
+      margin: 0 4mm;
+    }
+    .ribbon span {
+      font-size: 5mm; font-weight: 900;
+      color: #fff8e0;
+      letter-spacing: .15em;
+    }
+
+    /* =========================================
+       HERO
+    ========================================= */
+    .hero {
+      position: absolute;
+      top: 12.5mm; left: 0; right: 0;
+      height: 103mm;
+    }
+
+    /* Photo (right 60%) */
+    .hero-photo {
+      position: absolute;
+      top: 0; right: -3mm;
+      width: 128mm; height: 103mm;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      display: block;
+    }
+    /* Fade photo into bg on left */
+    .hero-photo::before {
+      content: '';
+      position: absolute; top: 0; left: 0; bottom: 0; width: 40mm;
+      background: linear-gradient(to right, #fdf5e3 0%, transparent 100%);
+      z-index: 2;
+    }
+    /* Fade photo bottom */
+    .hero-photo::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 20mm;
+      background: linear-gradient(to top, #fdf5e3 0%, transparent 100%);
+      z-index: 2;
+    }
+
+    /* Headline (left) */
+    .hero-text {
+      position: absolute;
+      top: 4mm; left: 5mm;
+      width: 100mm; z-index: 5;
+    }
+    .h-line1 {
+      font-size: 13.5mm; font-weight: 900;
+      color: #1a0900; line-height: 1;
+      margin-bottom: 1.5mm;
+      text-shadow: 0 .5mm 2mm rgba(255,245,200,.6);
+    }
+    .h-line2 {
+      font-size: 21mm; font-weight: 900;
+      background: linear-gradient(135deg,#7a4f00,#c9900a,#f0c828,#c9900a,#7a4f00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: .95; letter-spacing: -.01em;
+      margin-bottom: 2.5mm;
+    }
+    .lets-try {
+      font-size: 9mm; font-weight: 700; font-style: italic;
+      color: #c9900a; letter-spacing: .04em;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      margin-bottom: 3mm;
+      text-shadow: 0 .3mm 1.5mm rgba(201,144,10,.3);
+    }
+    .hero-sub {
+      font-size: 4.2mm; font-weight: 700;
+      color: #1a0900; letter-spacing: .03em;
+    }
+
+    /* Sparkle decoration */
+    .sparkles {
+      display: flex; gap: 2mm;
+      margin-bottom: 2mm;
+    }
+    .sp {
+      font-size: 4.5mm; color: #f0c828;
+      animation: none;
+    }
+
+    /* =========================================
+       OFFER BAND (white strip)
+    ========================================= */
+    .offer-band {
+      position: absolute;
+      top: 115.5mm; left: 0; right: 0;
+      background: #fff;
+      border-top: .7mm solid #c9a030;
+      border-bottom: .7mm solid #c9a030;
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* Left: price + "無料" */
+    .offer-left {
+      width: 115mm;
+      padding: 3.5mm 3mm 3mm 4mm;
+      display: flex; gap: 3mm; align-items: flex-start;
+    }
+    .price-circle {
+      width: 26mm; height: 26mm;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#8B5c00,#c9900a,#f0c828,#c9900a,#8B5c00);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 1mm 4mm rgba(0,0,0,.25);
+    }
+    .pc-top { font-size: 2.6mm; font-weight: 900; color: #fff8e0; line-height: 1.2; }
+    .pc-val { font-size: 4.2mm; font-weight: 900; color: #fff; line-height: 1.1; }
+
+    .offer-main { display: flex; flex-direction: column; gap: .5mm; padding-top: .5mm; }
+    .trial-lbl {
+      font-size: 5mm; font-weight: 900; color: #1a0900; line-height: 1.1;
+    }
+    .trial-free {
+      font-size: 21mm; font-weight: 900; line-height: .9;
+      background: linear-gradient(135deg,#7a4f00,#c9900a,#f0c828,#c9900a,#7a4f00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -.02em;
+    }
+    .trial-notes {
+      font-size: 2.7mm; color: #555; line-height: 1.55;
+      margin-top: .5mm;
+    }
+    .trial-notes .red { color: #cc0000; font-weight: 700; }
+
+    /* Right: checklist */
+    .offer-right {
+      flex: 1;
+      padding: 3.5mm 3mm 3mm 0;
+      display: flex; flex-direction: column;
+      justify-content: center; gap: 2.8mm;
+      border-left: .5mm solid #e8d080;
+    }
+    .chk {
+      display: flex; align-items: center; gap: 2mm;
+      font-size: 3.7mm; font-weight: 700; color: #1a0900;
+    }
+    .chk-icon {
+      width: 5.2mm; height: 5.2mm; flex-shrink: 0;
+      background: linear-gradient(135deg,#8B5c00,#d4a017,#f0c040);
+      border-radius: .8mm;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .chk-icon svg { width: 3.2mm; height: 3.2mm; }
+    .chk .mt { color: #c9900a; font-weight: 900; }
+
+    /* =========================================
+       FOR WHOM
+    ========================================= */
+    .for-whom {
+      position: absolute;
+      top: 163mm; left: 0; right: 0;
+      height: 36mm;
+      background: #fff8ee;
+      border-top: .5mm dashed #e0c070;
+      padding: 2.5mm 4mm;
+    }
+    .fw-title {
+      font-size: 4mm; font-weight: 900;
+      color: #8B5c00;
+      text-align: center; margin-bottom: 2.5mm;
+      display: flex; align-items: center; gap: 3mm;
+    }
+    .fw-title::before, .fw-title::after {
+      content: '';
+      flex: 1; height: .3mm;
+      background: linear-gradient(90deg, transparent, #c9a030, transparent);
+    }
+    .fw-grid {
+      display: flex; justify-content: space-around; gap: 2mm;
+    }
+    .fw-item {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.5mm; flex: 1;
+    }
+    .fw-circle {
+      width: 17mm; height: 17mm; border-radius: 50%;
+      border: .8mm solid #c9a030;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6.5mm;
+    }
+    .fw-label {
+      font-size: 2.8mm; font-weight: 700;
+      color: #1a0900; text-align: center; line-height: 1.4;
+    }
+
+    /* =========================================
+       URGENCY
+    ========================================= */
+    .urgency {
+      position: absolute;
+      top: 199mm; left: 0; right: 0;
+      height: 26mm;
+      display: flex; overflow: hidden;
+    }
+    .urg-left {
+      width: 50mm;
+      background: linear-gradient(135deg,#7a4f00,#c9900a,#d4a017,#c9900a,#7a4f00);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2mm 3mm;
+      position: relative;
+      clip-path: polygon(0 0, calc(100% - 0mm) 0, 100% 50%, calc(100% - 0mm) 100%, 0 100%);
+    }
+    /* Diagonal cut right edge */
+    .urg-left-inner {
+      display: flex; flex-direction: column;
+      align-items: center; gap: .2mm;
+    }
+    .urg-saki { font-size: 3mm; font-weight: 900; color: #fff8e0; letter-spacing: .1em; }
+    .urg-num  { font-size: 9.5mm; font-weight: 900; color: #fff; line-height: 1; }
+    .laurel   { font-size: 4.5mm; color: rgba(255,255,255,.55); letter-spacing: -1px; }
+
+    .urg-right {
+      flex: 1;
+      background: #fffdf5;
+      border: .5mm solid #c9a030; border-left: none;
+      padding: 2.5mm 4mm;
+      display: flex; flex-direction: column;
+      justify-content: center; gap: 1.2mm;
+    }
+    .urg-chance {
+      font-size: 4mm; font-weight: 900; color: #cc0000;
+      letter-spacing: .02em;
+    }
+    .urg-dl-row { display: flex; align-items: center; gap: 2mm; }
+    .urg-dl-label {
+      background: #333; color: #fff;
+      font-size: 3mm; font-weight: 900;
+      padding: .7mm 2mm; border-radius: .6mm;
+      white-space: nowrap;
+    }
+    .urg-dl-date {
+      font-size: 5.8mm; font-weight: 900; color: #1a0900; line-height: 1;
+    }
+    .urg-note { font-size: 2.5mm; color: #888; }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .footer {
+      position: absolute;
+      top: 225mm; left: 0; right: 0;
+      height: 69mm;
+      background: #fff;
+      border-top: .7mm solid #c9a030;
+      display: flex;
+    }
+
+    /* Trainer col */
+    .tr-col {
+      width: 56mm;
+      padding: 3mm;
+      border-right: .5mm solid #e8d080;
+      display: flex; flex-direction: column; gap: 1.5mm;
+    }
+    .tr-header {
+      text-align: center; font-size: 2.9mm; font-weight: 700;
+      color: #8B5c00; border-bottom: .3mm solid #c9a030;
+      padding-bottom: .8mm; letter-spacing: .1em;
+    }
+    .tr-inner { display: flex; gap: 2mm; align-items: flex-start; }
+    .tr-photo {
+      width: 22mm; height: 26mm; flex-shrink: 0;
+      border: .5mm solid #c9a030; border-radius: 1mm;
+      background: #e8e0d0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-size: 2mm; color: #aaa; text-align: center;
+      gap: 1mm;
+    }
+    .tr-photo-icon { font-size: 7mm; }
+    .tr-info { flex: 1; display: flex; flex-direction: column; gap: .8mm; }
+    .tr-label { font-size: 2.6mm; color: #8B5c00; font-weight: 700; }
+    .tr-name { font-size: 6.5mm; font-weight: 900; color: #1a0900; line-height: 1.1; }
+    .tr-grade {
+      display: inline-block;
+      background: linear-gradient(135deg,#7a4f00,#c9900a);
+      color: #fff; font-size: 2.6mm; font-weight: 800;
+      padding: .5mm 2mm; border-radius: .5mm;
+    }
+    .tr-msg {
+      font-size: 2.9mm; color: #444; line-height: 1.55;
+    }
+
+    /* Gym info col */
+    .gym-col {
+      flex: 1; padding: 3mm 3.5mm;
+      border-right: .5mm solid #e8d080;
+      display: flex; flex-direction: column; gap: 1.8mm;
+    }
+    .gym-name { font-size: 9mm; font-weight: 900; color: #1a0900; line-height: 1; letter-spacing: .04em; }
+    .gym-type { font-size: 2.9mm; color: #888; letter-spacing: .12em; }
+    .gym-landmark {
+      background: #fffbe0; border: .6mm solid #d4a017;
+      border-radius: 1mm; padding: 1.5mm 2.5mm;
+      font-size: 3.5mm; font-weight: 900; color: #8B5c00;
+      text-align: center; letter-spacing: .03em;
+    }
+    .gi { display: flex; gap: 1.5mm; align-items: flex-start; font-size: 2.9mm; color: #333; line-height: 1.5; }
+    .gi-ic { color: #c9900a; flex-shrink: 0; }
+    .gi-tel { font-size: 5mm; font-weight: 900; color: #1a0900; }
+
+    /* QR col */
+    .qr-col {
+      width: 45mm; padding: 2.5mm 2mm;
+      display: flex; flex-direction: column; gap: 2mm;
+    }
+    .qr-title {
+      font-size: 3mm; font-weight: 900; color: #1a0900;
+      text-align: center;
+      border-bottom: .3mm solid #c9a030; padding-bottom: 1mm;
+    }
+    .qr-pair { display: flex; gap: 2mm; justify-content: center; }
+    .qr-item { display: flex; flex-direction: column; align-items: center; gap: 1mm; }
+    .qr-box {
+      width: 18mm; height: 18mm;
+      border: .5mm solid #bbb; border-radius: 1mm;
+      background: #f5f5f5;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2mm; color: #aaa; text-align: center;
+      line-height: 1.4;
+    }
+    .qr-lbl { font-size: 2.4mm; font-weight: 700; color: #333; text-align: center; }
+    .line-pill {
+      background: #06c755; color: #fff;
+      font-size: 2.4mm; font-weight: 900;
+      padding: .4mm 1.8mm; border-radius: .8mm;
+    }
+    .insta-row {
+      display: flex; align-items: center; gap: 2mm;
+      border-top: .3mm solid #e8d080; padding-top: 2mm;
+    }
+    .insta-icon {
+      width: 13mm; height: 13mm; border-radius: 2mm; flex-shrink: 0;
+      background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 6mm;
+    }
+    .insta-txt { font-size: 2.7mm; font-weight: 700; color: #333; line-height: 1.5; }
+
+    /* =========================================
+       BOTTOM STRIP
+    ========================================= */
+    .bottom-strip {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 9mm;
+      background: linear-gradient(135deg,#7a4f00,#c9900a,#d4a017,#c9900a,#7a4f00);
+      display: flex; align-items: center; justify-content: center;
+      gap: 3mm;
+    }
+    .bottom-strip span {
+      font-size: 4mm; font-weight: 900;
+      color: #fff; letter-spacing: .1em;
+    }
+    .star { color: rgba(255,255,255,.7); font-size: 3.5mm; }
+  </style>
+</head>
+<body>
+
+<!-- 印刷手順ガイド（画面表示のみ） -->
+<div class="guide">
+  <h3>📄 PDF書き出し手順（Chrome推奨）</h3>
+  <ol>
+    <li><strong>Ctrl+P</strong>（Mac: Cmd+P）で印刷ダイアログを開く</li>
+    <li>送信先 →「<strong>PDFに保存</strong>」を選択</li>
+    <li>用紙サイズ：<strong>A4</strong></li>
+    <li>余白：<strong>なし</strong></li>
+    <li>「<strong>背景のグラフィック</strong>」にチェックを入れる ← 重要</li>
+    <li>「PDFに保存」でダウンロード</li>
+  </ol>
+  <p class="warn">⚠ トレーナー写真・QRコードはプレースホルダーです。実際の画像ファイルに差し替えてください。</p>
+  <p style="margin-top:8px;">差し替え方法：<code>.tr-photo</code> の部分に <code>&lt;img src="trainer.jpg"&gt;</code>、QRは <code>&lt;img src="qr-line.png"&gt;</code> を配置してください。</p>
+</div>
+
+<!-- ===== A4 PAGE ===== -->
+<div class="page">
+
+  <!-- BG glow -->
+  <div class="bg-glow"></div>
+  <div class="bg-glow2"></div>
+
+  <!-- RIBBON -->
+  <div class="ribbon">
+    <span>このチラシをお持ちの方限定！</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-photo">
+      <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1400&q=90" alt="ミット打ち体験">
+    </div>
+    <div class="hero-text">
+      <div class="sparkles"><span class="sp">✦</span><span class="sp">✧</span><span class="sp">✦</span></div>
+      <div class="h-line1">ミット打ちで</div>
+      <div class="h-line2">ストレス発散！</div>
+      <div class="lets-try">Let's Try!</div>
+      <div class="hero-sub">思いっきりパンチして、心も体もリフレッシュ！</div>
+    </div>
+  </div>
+
+  <!-- OFFER BAND -->
+  <div class="offer-band">
+    <div class="offer-left">
+      <div class="price-circle">
+        <span class="pc-top">通常 30分</span>
+        <span class="pc-val">3,500円</span>
+      </div>
+      <div class="offer-main">
+        <div class="trial-lbl">ミット打ち体験</div>
+        <div class="trial-free">無料</div>
+        <div class="trial-notes">
+          ※お一人様1回限り<br>
+          ※<span class="red">チラシ持参の方限定</span>
+        </div>
+      </div>
+    </div>
+    <div class="offer-right">
+      <div class="chk">
+        <div class="chk-icon">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L3.8 8L8.5 2" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        運動が苦手でも大丈夫！
+      </div>
+      <div class="chk">
+        <div class="chk-icon">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L3.8 8L8.5 2" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        男女・年齢問わず大歓迎！
+      </div>
+      <div class="chk">
+        <div class="chk-icon">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L3.8 8L8.5 2" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        初心者も安心の<span class="mt">マンツーマン</span>指導！
+      </div>
+      <div class="chk">
+        <div class="chk-icon">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L3.8 8L8.5 2" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        気軽に楽しくリフレッシュ！
+      </div>
+    </div>
+  </div>
+
+  <!-- FOR WHOM -->
+  <div class="for-whom">
+    <div class="fw-title">こんな方におすすめ！</div>
+    <div class="fw-grid">
+      <div class="fw-item">
+        <div class="fw-circle">😤</div>
+        <div class="fw-label">ストレスを<br>発散したい方</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-circle">💪</div>
+        <div class="fw-label">運動不足を<br>解消したい方</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-circle">🤍</div>
+        <div class="fw-label">自分のペースで<br>楽しく続けたい方</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-circle">🌟</div>
+        <div class="fw-label">初めての方も<br>安心！</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- URGENCY -->
+  <div class="urgency">
+    <div class="urg-left" style="clip-path:polygon(0 0,100% 0,calc(100% - 6mm) 50%,100% 100%,0 100%);">
+      <div class="urg-left-inner">
+        <div class="laurel">🏅</div>
+        <div class="urg-saki">先着</div>
+        <div class="urg-num">5名様</div>
+        <div class="urg-saki">限定！</div>
+      </div>
+    </div>
+    <div class="urg-right">
+      <div class="urg-chance">今だけのチャンス！お早めにご予約ください！</div>
+      <div class="urg-dl-row">
+        <div class="urg-dl-label">有効期限</div>
+        <div class="urg-dl-date">2026年6月30日（火）まで</div>
+      </div>
+      <div class="urg-note">※定員に達し次第、予告なく終了する場合がございます。</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+
+    <!-- Trainer -->
+    <div class="tr-col">
+      <div class="tr-header">トレーナー紹介</div>
+      <div class="tr-inner">
+        <div class="tr-photo">
+          <!-- ↓ 実際のトレーナー写真に差し替え -->
+          <!--<img src="trainer.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:.8mm;">-->
+          <div class="tr-photo-icon">👤</div>
+          <span>写真を<br>差し替え</span>
+        </div>
+        <div class="tr-info">
+          <div class="tr-label">トレーナー</div>
+          <div class="tr-name">上村 徹</div>
+          <div class="tr-grade">元A級プロボクサー</div>
+        </div>
+      </div>
+      <div class="tr-msg">
+        初めての方でも安心して、<br>楽しくストレス発散できる<br>トレーニングを提供します！
+      </div>
+    </div>
+
+    <!-- Gym Info -->
+    <div class="gym-col">
+      <div class="gym-name">UEMULAB</div>
+      <div class="gym-type">― パーソナルジム ―</div>
+      <div class="gi">
+        <span class="gi-ic">📍</span>
+        <span>〒650-0011<br>兵庫県神戸市中央区下山手通2丁目17-2<br>モモビル403</span>
+      </div>
+      <div class="gym-landmark">生田神社 西門 目の前！</div>
+      <div class="gi">
+        <span class="gi-ic">📞</span>
+        <span class="gi-tel">070-9117-0396</span>
+      </div>
+      <div class="gi">
+        <span class="gi-ic">🕐</span>
+        <span>営業時間　8:00〜21:00（最終受付20:00）</span>
+      </div>
+      <div class="gi">
+        <span class="gi-ic" style="font-size:2.8mm;font-weight:900;color:#888;">×</span>
+        <span>定休日　不定休</span>
+      </div>
+    </div>
+
+    <!-- QR Codes -->
+    <div class="qr-col">
+      <div class="qr-title">今すぐ予約はこちら！</div>
+      <div class="qr-pair">
+        <div class="qr-item">
+          <!-- ↓ LINEのQRコード画像に差し替え -->
+          <!--<img src="qr-line.png" style="width:18mm;height:18mm;">-->
+          <div class="qr-box">QR<br>差替</div>
+          <div class="line-pill">LINE</div>
+          <div class="qr-lbl">LINEで<br>簡単予約</div>
+        </div>
+        <div class="qr-item">
+          <!-- ↓ エアリザーブのQRコード画像に差し替え -->
+          <!--<img src="qr-airrsv.png" style="width:18mm;height:18mm;">-->
+          <div class="qr-box">QR<br>差替</div>
+          <div class="qr-lbl">エアリザーブ<br>で予約</div>
+        </div>
+      </div>
+      <div class="insta-row">
+        <div class="insta-icon">📷</div>
+        <!-- ↓ InstagramのQRコード画像に差し替え -->
+        <!--<img src="qr-insta.png" style="width:13mm;height:13mm;">-->
+        <div class="insta-txt">Instagramで<br>最新情報をチェック！</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM STRIP -->
+  <div class="bottom-strip">
+    <span class="star">✦</span>
+    <span>年齢・性別問わず、どなたでも参加いただけます！</span>
+    <span class="star">✦</span>
+  </div>
+
+</div><!-- .page -->
+</body>
+</html>
